@@ -14,7 +14,7 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v4
       with:
-        ref: workflow-result
+        ref: main
         fetch-depth: 0
     - name: setup
       working-directory: skyf
