@@ -24,7 +24,7 @@ jobs:
     - name: delete and restore main
       run: |
         rm  -r *
-        git restore --source main .
+        git restore --source origin/main .
         echo "merge=$(git merge-base --is-ancestor origin/main HEAD;echo $?)" >> "$GITHUB_ENV"
         cat $GITHUB_ENV
     - name: merge if possible
