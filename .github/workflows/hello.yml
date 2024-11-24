@@ -24,8 +24,8 @@ jobs:
     - name: merge if possible
       if: env.merge == 1
       run: |
-              git merge origin/main -m 'merge'
-              git log --graph --oneline --all --decorate
+        git merge origin/main -m 'merge'
+        git log --graph --oneline --all --decorate
     - name: delete and restore main
       run: |
         rm  -r *
@@ -36,7 +36,9 @@ jobs:
       working-directory: src
       run: |
           make hello
-          git add result docs
+    - name: add
+      run: |
+        git add result docs
     - name: commit
       if: env.merge == 1
       run: git commit --amend -m 'result'
