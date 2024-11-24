@@ -10,19 +10,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: set
     - name: Check out repository code
       uses: actions/checkout@v4
       with:
         ref: pages
         fetch-depth: 0
-    - name: check branch status
-      run : echo "merge=$(git merge-base --is-ancestor origin/main HEAD;echo $?)" >> "$GITHUB_ENV"
     - name: setup
       run: |
+        echo "merge=$(git merge-base --is-ancestor origin/main HEAD;echo $?)" >> "$GITHUB_ENV"
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
-        git branch -l -v
     - name: merge if possible
       if: env.merge == 1
       run: |
@@ -30,21 +27,15 @@ jobs:
     - name: delete and restore main
       run: |
         rm  -r *
+        ls
         git restore --source origin/main .
-    - name: make
-      working-directory: src
-      run: |
-          make hello
-    - name: add
-      run: |
+        make hello
         git add result docs
     - name: commit
       if: env.merge == 1
-      run: git commit --amend -m 'result'
+      run: git commit --amend -m 'add result'
     - name: commit
       if: env.merge == 0
       run: git commit -m 'result(re-exec)' --allow-empty
     - name: push
-      run: |
-        git log --decorate --all --oneline --graph
-        git push
+      run: git push
