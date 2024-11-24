@@ -1,3 +1,5 @@
 
 hello:
-	python3 gen.py > ../docs/hello.txt
+	mkdir ../result/
+	python3 gen.py > ../result/hello.txt
+	cp ../result/hello.txt ../docs

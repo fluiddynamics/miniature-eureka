@@ -14,14 +14,33 @@ jobs:
     - name: Check out repository code
       uses: actions/checkout@v4
       with:
-        ref: main
+        ref: pages
         fetch-depth: 0
     - name: setup
       run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
         git branch -l -v
+    - name: delete and restore main
+      run: |
+        rm  -r *
+        git restore --source main .
+        echo "merge=$(git merge-base --is-ancestor origin/main HEAD;echo $?)" >> "$GITHUB_ENV"
+        cat $GITHUB_ENV
+    - name: merge if possible
+      if: env.merge == 1
+      run: |
+          git merge origin/main -m 'merge'
+          git log --graph --oneline --all --decorate
+      working-directory: skyf  
     - name: make
       working-directory: src
       run: |
-        make hello
+          make hello
+          git add result docs
+    - name: commit
+      if: env.merge == 1
+      run: git commit --amend -m 'result'
+    - name: commit
+      if: env.merge == 0
+      run: git commit -m 'result(re-exec)' --allow-empty
