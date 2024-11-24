@@ -1,5 +1,6 @@
+OUT := $(shell python3 get_result_location.py)
 
 hello:
-	mkdir ../result/
-	python3 gen.py > ../result/hello.txt
-	cp ../result/hello.txt ../docs
+	python3 gen.py > $(OUT)/hello.txt
+	mkdir ../docs/result
+	cp $(OUT)/hello.txt ../docs/result
