@@ -26,7 +26,7 @@ jobs:
         git merge -s ours origin/main -m 'merge'
     - name: restore main and build
       run: |
-        git rm .
+        git rm -r .
         ls
         git restore --source origin/main .
         make hello
