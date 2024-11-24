@@ -1,0 +1,44 @@
+name: hello
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v4
+      with:
+        ref: pages
+        fetch-depth: 0
+    - name: setup
+      run: |
+        echo "merge=$(git merge-base --is-ancestor origin/main HEAD;echo $?)" >> "$GITHUB_ENV"
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+    - name: merge if possible
+      if: env.merge == 1
+      run: |
+        git merge -s ours origin/main -m 'merge'
+    - name: restore main
+      run: |
+        git rm -r .
+        ls
+        git restore -WS --source origin/main .
+    - name: run
+      run: make hello
+      working-directory: src
+    - name: add
+      run: git add result docs
+    - name: commit
+      if: env.merge == 1
+      run: git commit --amend -m 'add result'
+    - name: commit
+      if: env.merge == 0
+      run: git commit -m 'result(re-exec)' --allow-empty
+    - name: push
+      run: git push
