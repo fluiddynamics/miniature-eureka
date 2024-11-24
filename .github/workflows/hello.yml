@@ -24,13 +24,16 @@ jobs:
       if: env.merge == 1
       run: |
         git merge -s ours origin/main -m 'merge'
-    - name: restore main and build
+    - name: restore main
       run: |
         git rm -r .
         ls
         git restore --source origin/main .
-        make hello
-        git add result docs
+    - name: run
+      run: make hello
+      working-directory: src
+    - name: add
+      run: git add result docs
     - name: commit
       if: env.merge == 1
       run: git commit --amend -m 'add result'
