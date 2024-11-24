@@ -33,7 +33,7 @@ jobs:
       run: make hello
       working-directory: src
     - name: add
-      run: git add result docs
+      run: git add -f result docs
     - name: commit
       if: env.merge == 1
       run: git commit --amend -m 'add result'
