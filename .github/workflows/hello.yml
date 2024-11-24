@@ -32,7 +32,6 @@ jobs:
       run: |
           git merge origin/main -m 'merge'
           git log --graph --oneline --all --decorate
-      working-directory: skyf  
     - name: make
       working-directory: src
       run: |
