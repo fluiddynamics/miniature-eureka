@@ -1,0 +1,102 @@
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+.main > div {
+  display: flex;
+}
+.main > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.main > div > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.main > div > div > div > div {
+  display: flex;
+}
+.main > div > div > div > div > div {
+  display: flex;
+}
+.main > div > div > div > div > div > div {
+  display: flex;
+}
+.main {
+  font-size: 12px;
+  font-family:'Consolas', monospace;
+}
+.main {
+  width: fit-content;
+}
+.main > div> span {
+  width: 6ch;
+  text-align: center;
+}
+.main > div > div > div > div> span {
+  width: 6ch;
+  text-align: center;
+}
+.main > div > div > div > div > div > div {
+  width: 20ch;
+  justify-content: space-evenly;
+}
+.main > div > div > div > div.none {
+  display:none;
+}
+.main {
+   border-bottom:1px solid;
+}
+.main {
+   border-right:1px solid;
+}
+.main > div:not(:last-of-type):not(.header) {
+   border-bottom:1px solid;
+}
+.main > div > div > div:not(:last-of-type):not(.header)> div:last-of-type> div {
+   border-bottom:1px dashed;
+}
+.main > div > div > div:not(:last-of-type):not(.header)> div:last-of-type> span {
+   border-bottom:1px dashed;
+}
+.main > div>span {
+   border-left:1px solid;
+}
+.main > div>span {
+   border-right:1px solid;
+}
+.main > div > div > div > div>span {
+   border-right:1px solid;
+}
+.main span {
+  padding-top:0.4ch;
+  padding-bottom:0.4ch;
+}
+.main > div>span {
+  position:sticky;
+  left:0px;
+  background-color:white;
+}
+.main > div > div > div > div>span {
+  position:sticky;
+  left:calc(6ch + 2px);
+  background-color:white;
+}
+.main div.header {
+  font-weight:bold;
+  position:sticky;
+  top:0;
+  background-color:white;
+  border-top:1px solid;
+  z-index:1;
+  border-bottom:1px solid;
+}
+.setumei {
+  margin:1em;
+  font-family:sans-serif;
+}
+.setumei p {
+  display:list-item;
+  list-style-type:disc;
+}
