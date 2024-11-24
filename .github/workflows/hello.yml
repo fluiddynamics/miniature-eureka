@@ -46,4 +46,6 @@ jobs:
       if: env.merge == 0
       run: git commit -m 'result(re-exec)' --allow-empty
     - name: push
-      run: git push
+      run: |
+        git log --decorate --all --oneline --graph
+        git push
