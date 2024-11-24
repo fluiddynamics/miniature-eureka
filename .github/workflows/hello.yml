@@ -1,0 +1,28 @@
+name: hello
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - run: set
+    - name: Check out repository code
+      uses: actions/checkout@v4
+      with:
+        ref: workflow-result
+        fetch-depth: 0
+    - name: setup
+      working-directory: skyf
+      run: |
+        git config --global user.email "you@example.com"
+        git config --global user.name "Your Name"
+        git branch -l -v
+    - name: make
+      run: |
+        make hello
+      working-directory: src
