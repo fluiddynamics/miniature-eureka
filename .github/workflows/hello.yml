@@ -24,7 +24,7 @@ jobs:
     - name: merge if possible
       if: env.merge == 1
       run: |
-        git merge origin/main -m 'merge'
+        git merge --no-fast-forward origin/main -m 'merge'
         git log --graph --oneline --all --decorate
     - name: delete and restore main
       run: |
