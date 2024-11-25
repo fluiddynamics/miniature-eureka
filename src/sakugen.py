@@ -1,0 +1,20 @@
+import csslib
+
+def css(writer: csslib.CssWriter) -> None:
+    writer.orientation("VHVVHHH")
+    writer.font()
+    writer.fit(0)
+    writer.width(1, "6ch", True)
+    writer.width(4, "6ch", True)
+    writer.width(6, "20ch", False)
+    writer.undisplay(4)
+    writer.border_around(0)
+    writer.border_mid(1, "solid")
+    writer.border_mid(3, add=1)
+    writer.border0(1, "left", add=">span")
+    writer.border0(1, "right", add=">span")
+    writer.border0(4, "right", add=">span")
+    writer.padding("0.4ch")
+    writer.sticky(1)
+    writer.sticky(4, "calc(6ch + 2px)")
+    writer.header()
