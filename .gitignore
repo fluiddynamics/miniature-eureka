@@ -1,2 +1,4 @@
 result/
 docs/result
+src/venv/
+src/__pycache__/

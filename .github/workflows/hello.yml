@@ -30,7 +30,9 @@ jobs:
         ls
         git restore -WS --source origin/main .
     - name: run
-      run: make hello
+      run: |
+        pip3 install -r requirements.txt
+        make copy
       working-directory: src
     - name: add
       run: git add -f result docs
