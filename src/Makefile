@@ -1,10 +1,5 @@
 OUT := $(shell python3 get_result_location.py)
 
-hello:
-	python3 gen.py > $(OUT)/hello.txt
-	mkdir ../docs/result
-	cp $(OUT)/hello.txt ../docs/result
-
 $(OUT)/sekki.css: gen_css.py sekki.py
 	python3 gen_css.py sekki > $@
 
@@ -21,3 +16,7 @@ copy: all
 
 freeze:
 	pip3 freeze > requirements.txt
+
+clean:
+	rm ../docs/sekki.css ../docs/sakugen.css ../docs/kyureki.css
+	rm $(OUT)/sekki.css $(OUT)/sakugen.css $(OUT)/kyureki.css
